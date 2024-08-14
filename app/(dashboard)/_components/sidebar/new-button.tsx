@@ -21,7 +21,7 @@ export const NewButton = () => {
                 </div>
             </DialogTrigger>
             <DialogContent className="p-0 bg-transparent border-none max-w-[480px]">
-                <CreateOrganization />
+                <CreateOrganization routing="hash"/>
             </DialogContent>
         </Dialog>
     )
