@@ -18,14 +18,23 @@ export const Room =({
     roomId, 
     fallback,
 }: RoomProps) => {
-  const publicApiKey = process.env.NEXT_PUBLIC_LIVEBLOCKS_SECRET_KEY;
+  // const publicApiKey = process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY;
 
-  if (!publicApiKey) {
-    throw new Error("NEXT_PUBLIC_LIVEBLOCKS_SECRET_KEY environment variable is not defined");
+  // if (!publicApiKey) {
+  //   throw new Error("NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY environment variable is not defined");
+  // }
+
+  const authEndpoint = "/api/liveblocks-auth"
+
+  if (!authEndpoint) {
+    throw new Error("liveblocks-auth is not defined");
   }
 
   return (
-    <LiveblocksProvider publicApiKey={publicApiKey}>
+    <LiveblocksProvider 
+    // publicApiKey={publicApiKey}
+    authEndpoint={authEndpoint}
+    >
       <RoomProvider id={roomId}>
         <ClientSideSuspense fallback={fallback}>
           {() => children}
