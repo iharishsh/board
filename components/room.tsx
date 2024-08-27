@@ -34,8 +34,13 @@ export const Room =({
     <LiveblocksProvider 
     // publicApiKey={publicApiKey}
     authEndpoint={authEndpoint}
+    throttle={16}
     >
-      <RoomProvider id={roomId}>
+      <RoomProvider id={roomId}
+        initialPresence={{
+          cursor: null,
+        }}
+      >
         <ClientSideSuspense fallback={fallback}>
           {() => children}
         </ClientSideSuspense>
