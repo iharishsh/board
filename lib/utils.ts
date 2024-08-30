@@ -38,24 +38,28 @@ export function resizeBounds(
     height: bounds.height,
   };
 
-  if ((corner && Side.Left) === Side.Left) {
-    result.x = Math.min(point.x, bounds.x + bounds.width);
+  // Left side resizing
+  if ((corner & Side.Left) === Side.Left) {
+    const newX = Math.min(point.x, bounds.x + bounds.width);
     result.width = Math.abs(bounds.x + bounds.width - point.x);
+    result.x = newX;
   }
 
-  if ((corner && Side.Right) === Side.Right) {
-    result.x = Math.min(point.x, bounds.x);
+  // Right side resizing
+  if ((corner & Side.Right) === Side.Right) {
     result.width = Math.abs(point.x - bounds.x);
   }
 
-  if ((corner && Side.Top) === Side.Top) {
-    result.y = Math.min(point.y, bounds.y + bounds.height);
-    result.width = Math.abs(bounds.y + bounds.height - point.y);
+  // Top side resizing
+  if ((corner & Side.Top) === Side.Top) {
+    const newY = Math.min(point.y, bounds.y + bounds.height);
+    result.height = Math.abs(bounds.y + bounds.height - point.y);
+    result.y = newY;
   }
 
-  if ((corner && Side.Bottom) === Side.Bottom) {
-    result.y = Math.min(point.y, bounds.y);
-    result.width = Math.abs(point.y - bounds.y);
+  // Bottom side resizing
+  if ((corner & Side.Bottom) === Side.Bottom) {
+    result.height = Math.abs(point.y - bounds.y);
   }
 
   return result;
